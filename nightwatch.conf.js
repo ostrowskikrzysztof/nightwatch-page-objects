@@ -1,7 +1,13 @@
 var seleniumServer = require('selenium-server');
 var chromedriver = require('chromedriver');
 require('nightwatch-cucumber')({
-    /* other configuration options */
+    cucumberArgs: [
+        '--require', 'hooks/timeout.js',
+        '--require', 'features/step_definitions',
+        '--format', 'pretty',
+        '--format', 'json:reports/cucumber.json',
+        'features'
+    ]
 });
 
 module.exports = {
@@ -9,7 +15,7 @@ module.exports = {
     "output_folder" : "reports",
     "custom_commands_path" : "",
     "custom_assertions_path" : "",
-    "page_objects_path" : "",
+    "page_objects_path": 'features/page-objects',
     "globals_path" : "",
 
     "selenium" : {
